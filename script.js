@@ -81,15 +81,15 @@ window.onload = function(){
         ctx.font = "bold 25px sans-serif"
         ctx.fillStyle = "black";
         ctx.textAlign = "center";
-        var centreX = canvasWidth / 2;
+        let centreX = canvasWidth / 2;
         ctx.fillText("SCORE : " + score.toString(), centreX, 60);
         ctx.restore();
     }
 
     const drawBlock = (ctx, position) => {
 
-        var x = position[0] * blockSize;
-        var y = position[1] * blockSize;
+        let x = position[0] * blockSize;
+        let y = position[1] * blockSize;
         ctx.fillRect(x, y, blockSize, blockSize);
 
     }
@@ -103,7 +103,7 @@ window.onload = function(){
 
             ctx.save();
             ctx.fillStyle = "#66B60E";
-            for(var i = 0; i < this.body.length; i++){
+            for(let i = 0; i < this.body.length; i++){
                 drawBlock(ctx, this.body[i]);
             }
 
