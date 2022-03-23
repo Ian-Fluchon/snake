@@ -6,18 +6,18 @@ window.onload = function(){
     const blockSize = 20;
     const ctx;
     const delay = 60;
-    const snaky;
+    let snaky;
     const apply;
-    const widthInBlocks = canvasWidth / blockSize;
-    const heightInBlocks = canvasHeight / blockSize;
-    const score;
-    const timeOut;
+    let widthInBlocks = canvasWidth / blockSize;
+    let heightInBlocks = canvasHeight / blockSize;
+    let score;
+    let timeOut;
 
     init();
 
     const init = () => {
 
-    var canvas = document.createElement("canvas");
+    const canvas = document.createElement("canvas");
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
     canvas.style.border = "10px solid #A47040";
@@ -61,7 +61,7 @@ window.onload = function(){
         ctx.textAlign = "center"
         ctx.strokeStyle = "white";
         ctx.lineWidth = .75;
-        var centreX = canvasWidth / 2;
+        let centreX = canvasWidth / 2;
         ctx.fillText("GAME OVER", centreX, 300);
         ctx.font = "bold 25px sans-serif"
         ctx.fillText("Press 'SPACE' to reset", centreX ,375);
@@ -140,7 +140,7 @@ window.onload = function(){
         }
 
         this.setDirection = function(newDirection){
-            var allowedDirection;
+            let allowedDirection;
             switch(this.direction){
                 case "left":
                 case "right":
@@ -160,24 +160,24 @@ window.onload = function(){
 
 
         this.checkCollision = function(){
-            var wallCollision = false;
-            var snakeCollision = false;
-            var head = this.body[0];
-            var rest = this.body.slice(1);
-            var snakeX = head[0];
-            var snakeY = head[1];
-            var minX = 0;
-            var minY = 0;
-            var maxX = widthInBlocks - 1;
-            var maxY = heightInBlocks - 1;
-            var isNotBetweenHorizontalWalls = snakeX < minX || snakeX > maxX;
-            var isNotBetweenVerticalWalls = snakeY < minY || snakeY > maxY;
+            let wallCollision = false;
+            let snakeCollision = false;
+            let head = this.body[0];
+            let rest = this.body.slice(1);
+            let snakeX = head[0];
+            let snakeY = head[1];
+            let minX = 0;
+            let minY = 0;
+            let maxX = widthInBlocks - 1;
+            let maxY = heightInBlocks - 1;
+            let isNotBetweenHorizontalWalls = snakeX < minX || snakeX > maxX;
+            let isNotBetweenVerticalWalls = snakeY < minY || snakeY > maxY;
 
             if (isNotBetweenHorizontalWalls || isNotBetweenVerticalWalls){
                 wallCollision = true;
             }
 
-            for(var i = 0; i < rest.length; i++){
+            for(let i = 0; i < rest.length; i++){
                 if(snakeX === rest[i][0] && snakeY === rest[i][1]){
                     snakeCollision = true;
                 }
@@ -189,7 +189,7 @@ window.onload = function(){
 
 
         this.isEatingApple = function(appleToEat){
-            var head = this.body[0];
+            let head = this.body[0];
             if(head[0] === appleToEat.position[0] && head[1] === appleToEat.position[1]){
                 return true;
             }
@@ -207,23 +207,23 @@ window.onload = function(){
             ctx.save();
             ctx.fillStyle = "#B5171E";
             ctx.beginPath();
-            var radius = blockSize / 2;
-            var x = this.position[0] * blockSize + radius;
-            var y = this.position[1] * blockSize + radius;
+            let radius = blockSize / 2;
+            let x = this.position[0] * blockSize + radius;
+            let y = this.position[1] * blockSize + radius;
             ctx.arc(x, y, radius, 0, Math.PI*2, true);
             ctx.fill();
             ctx.restore();
 
         }
         this.setNewPosition = function(){
-            var newX = Math.round(Math.random() * (widthInBlocks - 1));
-            var newY = Math.round(Math.random() * (heightInBlocks - 1));
+            let newX = Math.round(Math.random() * (widthInBlocks - 1));
+            let newY = Math.round(Math.random() * (heightInBlocks - 1));
             this.position = [newX, newY];
         }
         this.isOnSnake = function(snakeToCheck){
-            var isOnSnake = false;
+            let isOnSnake = false;
 
-            for(var i = 0; i < snakeToCheck.body.length; i++){
+            for(let i = 0; i < snakeToCheck.body.length; i++){
                 if(this.position[0] === snakeToCheck.body[i][0] && this.position[1] === snakeToCheck.body[i][1]){
                     isOnSnake = true;
                 }
@@ -234,8 +234,8 @@ window.onload = function(){
 
 
     document.onkeydown = function handleKeyDown(e){
-        var key = e.keyCode;
-        var newDirection;
+        let key = e.keyCode;
+        let newDirection;
         switch(key){
             case 37:
                 newDirection = "left"
