@@ -1,21 +1,21 @@
 
 window.onload = function(){
 
-    var canvasWidth = 900;
-    var canvasHeight = 600;
-    var blockSize = 20;
-    var ctx;
-    var delay = 60;
-    var snaky;
-    var apply;
-    var widthInBlocks = canvasWidth / blockSize;
-    var heightInBlocks = canvasHeight / blockSize;
-    var score;
-    var timeOut;
+    const canvasWidth = 900;
+    const canvasHeight = 600;
+    const blockSize = 20;
+    const ctx;
+    const delay = 60;
+    const snaky;
+    const apply;
+    const widthInBlocks = canvasWidth / blockSize;
+    const heightInBlocks = canvasHeight / blockSize;
+    const score;
+    const timeOut;
 
     init();
 
-    function init (){
+    const init = () => {
 
     var canvas = document.createElement("canvas");
     canvas.width = canvasWidth;
@@ -32,7 +32,7 @@ window.onload = function(){
     refreshCanvas();
     }
 
-    function refreshCanvas(){
+    const refreshCanvas = () => {
 
         snaky.advance();
         if(snaky.checkCollision()){
@@ -55,7 +55,7 @@ window.onload = function(){
         }
     }
 
-    function gameOver(){
+    const gameOver = () => {
         ctx.save();
         ctx.font = "bold 45px sans-serif"
         ctx.textAlign = "center"
@@ -68,7 +68,7 @@ window.onload = function(){
         ctx.restore();
     }
 
-    function restart(){
+    const restart = () => {
         snaky = new Snake([[1,14], [1,14], [1,14], [1,14]], "right");
         apply = new Apple([Math.round(Math.random() * (widthInBlocks - 1)), Math.round(Math.random() * (heightInBlocks - 1))]);
         score = 0;
@@ -76,7 +76,7 @@ window.onload = function(){
         refreshCanvas();
     }
 
-    function drawScore(){
+    const  drawScore = () => {
         ctx.save();
         ctx.font = "bold 25px sans-serif"
         ctx.fillStyle = "black";
@@ -86,7 +86,7 @@ window.onload = function(){
         ctx.restore();
     }
 
-    function drawBlock(ctx, position){
+    const drawBlock = (ctx, position) => {
 
         var x = position[0] * blockSize;
         var y = position[1] * blockSize;
@@ -94,7 +94,7 @@ window.onload = function(){
 
     }
 
-    function Snake(body, direction){
+    const Snake = (body, direction) => {
 
         this.body = body;
         this.direction = direction;
@@ -201,7 +201,7 @@ window.onload = function(){
 
     };
 
-    function Apple(position){
+    const Apple = (position) => {
         this.position = position;
         this.draw = function(){
             ctx.save();
